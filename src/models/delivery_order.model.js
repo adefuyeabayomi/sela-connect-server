@@ -1,0 +1,111 @@
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+const deliveryOrderSchema = new Schema({
+  packageDescription: {
+    type: String
+  },
+  packageWeight: {
+    type: Number
+  },
+  perishables: {
+    type: Boolean
+  },
+  fragile: {
+    type: Boolean
+  },
+  pickupIsResidential: {
+    type: Boolean
+  },
+  dropoffIsResidential: { // corrected typo from dropoffIsRedential
+    type: Boolean
+  },
+  pickupRestrictions: {
+    type: String
+  },
+  dropoffRestrictions: {
+    type: String
+  },
+  senderName: {
+    type: String,
+    required: true
+  },
+  senderPhoneNo: {
+    type: String,
+    required: true
+  },
+  receiverName: {
+    type: String,
+    required: true
+  },
+  receiverPhoneNo: {
+    type: String,
+    required: true
+  },
+  pickupAddress: {
+    type: String,
+    required: true
+  },
+  dropoffAddress: {
+    type: String,
+    required: true
+  },
+  pickupLga: {
+    type: String,
+    required: true
+  },
+  dropoffLga: {
+    type: String,
+    required: true
+  },
+  paymentMethod: {
+    type: String,
+    enum: ['online', 'ondelivery', 'onpickup'],
+    required: true
+  },
+  paymentStatus: {
+    type: String,
+    enum:  ['pending','paid']
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  totalDistance: {
+    type: Number,
+    required: true
+  },
+  user: {
+    type: Schema.Types.String,
+    ref: 'Auth' // assuming there is a User model
+  },
+  deliveryId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  vendor: {
+    type: Boolean,
+    default : false
+  },
+  assignedRider: {
+    type : String,
+    default: ''
+  },
+  deliveryTrackStatus: {
+    type: String,
+    default: 'pending',
+    enum:['pending', 'started','picked','dropped']
+  }
+}, {
+  timestamps: true // adds createdAt and updatedAt fields
+});
+
+const DeliveryOrder = mongoose.model('DeliveryOrder', deliveryOrderSchema);
+
+module.exports = DeliveryOrder;
+
+
+
+
+

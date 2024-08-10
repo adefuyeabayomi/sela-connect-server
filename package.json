@@ -1,0 +1,53 @@
+{
+  "name": "sela-connect-express-server",
+  "version": "0.0.0",
+  "description": "Sela Connect Logistics application server",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "cd src && cross-env NODE_ENV=development && nodemon index.js",
+    "start": "cd src && cross-env  NODE_ENV=production && node index.js",
+    "test": "cross-env NODE_ENV=test && jest --verbose",
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "build": "vite build"
+  },
+  "author": "Adefuye Abayomi",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.3.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.3.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14",
+    "socket.io": "^4.7.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "validator": "^13.12.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.3",
+    "prettier": "^3.1.1",
+    "supertest": "^6.3.3",
+    "vite": "^5.0.12",
+    "vite-node": "^1.2.2",
+    "vitest": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
