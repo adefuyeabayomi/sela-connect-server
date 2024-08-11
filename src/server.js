@@ -86,7 +86,7 @@ const startServer = async () => {
   try {
     await connectDB(database);
     logger.infoLogger("Success: connected to database");
-    server.listen(config.port, config.host, () => {
+    server.listen(process.env.port, config.host, () => {
       logger.infoLogger(
         `Server running on http://${config.host}:${config.port}`,
       );
