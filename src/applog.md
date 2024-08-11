@@ -46,3 +46,15 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-11T18:28:45.316Z*
 Success : connected to database
+## Error
+*2024-08-11T18:40:32.407Z*
+undefined
+## Info
+*2024-08-11T18:43:01.988Z*
+Success: connected to database
+## Info
+*2024-08-11T18:43:02.141Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-11T18:43:06.515Z*
+Success : connected to database
