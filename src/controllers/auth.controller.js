@@ -154,7 +154,7 @@ const login = async (req, res) => {
       config.JWT_SECRET,
       { expiresIn: "24h" }, // Token expires in 1 hour
     );
-    return res.status(200).json({ token });
+    return res.status(200).json({ token , verified: authUser.verified});
   } catch (error) {
     logger.errorLogger(error.message);
     logger.errorLogger(error);
@@ -432,6 +432,18 @@ const tokenIsValid = async (req, res) => {
   }
 };
 
+const accountIsVerified = async (req, res) => {
+  let {email} = req.query
+  try {
+      let user = await Auth.findOne({email})
+      res.status(200).json({ verified: user.verified });
+  } catch (error) {
+    logger.errorLogger("Error: Error in finishing request");
+    logger.errorLogger(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   signupWithEmailAndPassword,
   verifyEmail,
@@ -443,4 +455,5 @@ module.exports = {
   resetPassword,
   tokenIsValid,
   resendVerificationEmail,
+  accountIsVerified
 };
