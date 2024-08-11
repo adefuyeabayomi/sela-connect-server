@@ -14,6 +14,7 @@ const authRoute = require("./routes/auth.route");
 const profileRoutes = require("./routes/profile.route");
 const customerSupportRoute = require("./routes/customer_messages.route")
 const deliveryOrderRoute = require("./routes/delivery_order.route")
+let port = process.env.PORT;
 
 const YAML = require("yamljs");
 const path = require("path");
@@ -86,7 +87,7 @@ const startServer = async () => {
   try {
     await connectDB(database);
     logger.infoLogger("Success: connected to database");
-    server.listen(config.port, config.host, () => {
+    server.listen(port, () => {
       logger.infoLogger(
         `Server running on http://${config.host}:${config.port}`,
       );
