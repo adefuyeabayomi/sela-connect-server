@@ -74,22 +74,8 @@ function verify(name, userId, verifyToken) {
     body{
       color: #264f03;
     }
-    .logo {
-      width: 50px;
-    }
-    .heading-banner {
-      background-image: linear-gradient(-196deg, #2d7004, #79c500);
-      color: white !important;
-      border-radius: 15px;
-    }
-    h1,h2,h3,h4,h5,h6 {
-      color: #176917;
-    }
-    .heading-banner h1,.heading-banner h2,.heading-banner h3,.heading-banner h4,.heading-banner h5,.heading-banner h6{
-      color: white;
-    }
     .button-1 {
-      background-color: #141612;
+    background: gray;
       color: white;
       border: 0px solid;
       border-radius: 6px;
@@ -136,22 +122,8 @@ function passwordReset(name, resetToken, role) {
     body{
       color: #264f03;
     }
-    .logo {
-      width: 50px;
-    }
-    .heading-banner {
-      background-image: linear-gradient(-196deg, #2d7004, #79c500);
-      color: white !important;
-      border-radius: 15px;
-    }
-    h1,h2,h3,h4,h5,h6 {
-      color: #176917;
-    }
-    .heading-banner h1,.heading-banner h2,.heading-banner h3,.heading-banner h4,.heading-banner h5,.heading-banner h6{
-      color: white;
-    }
     .button-1 {
-      background-color: #141612;
+    background: gray;
       color: white;
       border: 0px solid;
       border-radius: 6px;
@@ -160,7 +132,6 @@ function passwordReset(name, resetToken, role) {
     .p-space{
       padding: 8px 0px;
     }
-
   </style>
 </head>
 <body>
@@ -182,10 +153,10 @@ function passwordReset(name, resetToken, role) {
 const reply = (email, replyMessage) => `
   <html>
   <body>
-    <p>Dear User,</p>
+    <p>Dear ${email},</p>
     <p>Thank you for reaching out to us. Here is our reply to your message:</p>
     <blockquote>${replyMessage}</blockquote>
-    <p>Best regards,<br>Joegreen Cafeteria</p>
+    <p>Best regards,<br>${config.companyName}</p>
     <div style="height: 20px;"></div>
     <small><i>For support, contact us via</i> <br>Company Mail: joegreencafeteriaservice@gmail.com <br> Call: 0916478 0187, 07043536861 </small>
   </body>
