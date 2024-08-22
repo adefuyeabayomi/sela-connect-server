@@ -44,13 +44,12 @@ function welcome(name) {
       </style>
     </head>
     <body>
-      <div class="email-container m-2">
+      <div class="email-container p-2 text-center">
         <div class="py-2"></div>
-        <h1>Hi ${name},Welcome to ${config.companyName}!</h1>
+        <h1 class="text-center">Hi ${name},Welcome to ${config.companyName}!</h1>
         <p>We're thrilled to have you on board. Let's serve you with the best inclass cullinary artistry in Nigeria.</p>
-        <p>A Verification email would be sent to you shortly. Kindly verify your email so that you can be able to continue using the site.</p>
-        <div class="p-space"></div>
-        <small><i>For support, contact us via</i> <br>Company Mail: ${config.companySupportMail} <br> Call: ${config.companyCallLine} </small>
+        <div class="p-space py-1"></div>
+        <small><i>For support, contact us via</i> <br><a href="mailto:${config.replyToMail}">Company Mail: ${config.replyToMail}</a> <br> <a href="tel://:${config.companyCallLine}">Call: ${config.companyCallLine} </a> </small>
       </div>
     </body>
     </html>`;
@@ -102,13 +101,13 @@ function verify(name, userId, verifyToken) {
   </style>
 </head>
 <body>
-  <div class="email-container p-2">
+  <div class="email-container p-2 text-center">
     <div class="py-2"></div>
     <h1>Verify Your Email</h1>
     <p>Hi ${name}, Please click the button below to verify your email address. If you didn't sign up for the account, kindly ignore this email.</p>
     <a href="${verifyLink}" class="button-1">Verify Email</a>
-    <div class="p-space"></div>
-      <small><i>For support, contact us via</i> <br>Company Mail: ${config.companySupportMail} <br> Call: ${config.companyCallLine} </small>
+    <div class="p-space py-1"></div>
+     <small><i>For support, contact us via</i> <br><a href="mailto:${config.replyToMail}">Company Mail: ${config.replyToMail}</a> <br> <a href="tel://:${config.companyCallLine}">Call: ${config.companyCallLine} </a> </small>
   </div>
 </body>
 </html>
@@ -118,9 +117,9 @@ function verify(name, userId, verifyToken) {
 function passwordReset(name, resetToken, role) {
   let frontEndAddr;
   if (role == "admin") {
-    frontEndAddr = "https://joegreen-admin.netlify.app";
+    frontEndAddr = "https://selaconnect.netlify.app";
   } else {
-    frontEndAddr = "https://joegreencafe.com";
+    frontEndAddr = "https://selaconnect.com";
   }
   const resetLink = `${frontEndAddr}/reset-password?resetToken=${resetToken}`;
   return `
@@ -165,13 +164,13 @@ function passwordReset(name, resetToken, role) {
   </style>
 </head>
 <body>
-  <div class="email-container p-2">
+  <div class="email-container p-2 text-center">
     <h5>Hello ${name},</h5>
     <h1>Password Reset</h1>
     <p>Click the link below to reset your password:</p>
     <a href="${resetLink}" class="button-1">Reset Password</a>
-    <div class="p-space"></div>
-      <small><i>For support, contact us via</i> <br>Company Mail: ${config.companySupportMail} <br> Call: ${config.companyCallLine} </small>
+    <div class="p-space py-1"></div>
+     <small><i>For support, contact us via</i> <br><a href="mailto:${config.replyToMail}">Company Mail: ${config.replyToMail}</a> <br> <a href="tel://:${config.companyCallLine}">Call: ${config.companyCallLine} </a> </small>
   </div>
   </div>
 </body>

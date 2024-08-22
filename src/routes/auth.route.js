@@ -21,5 +21,5 @@ router.post(
 router.get("/is-valid", verifyToken, authController.tokenIsValid);
 router.get("/account-verification-status", authController.accountIsVerified);
 router.get("/resend-verification-mail", authController.accountIsVerified);
-
+router.post('/reauthenticate',verifyToken, authController.reauthenticate);
 module.exports = router;
