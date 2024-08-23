@@ -100,14 +100,10 @@ function verify(name, userId, verifyToken) {
   `;
 }
 
-function passwordReset(name, resetToken, role) {
-  let frontEndAddr;
-  if (role == "admin") {
-    frontEndAddr = "https://selaconnect.netlify.app";
-  } else {
-    frontEndAddr = "https://selaconnect.com";
-  }
-  const resetLink = `${frontEndAddr}/reset-password?resetToken=${resetToken}`;
+function passwordReset(name, resetToken) {
+  let frontEndAddr = "https://selaconnect.netlify.app"
+
+  const resetLink = `${frontEndAddr}/password-reset?resetToken=${resetToken}`;
   return `
   <!DOCTYPE html>
 <html lang="en">
@@ -115,24 +111,8 @@ function passwordReset(name, resetToken, role) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Password Reset</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"><style>
-    .w-max-content {
-      width: max-content
-    }
-    body{
-      color: #264f03;
-    }
-    .button-1 {
-    background: gray;
-      color: white;
-      border: 0px solid;
-      border-radius: 6px;
-      padding: 7px 30px;
-    }
-    .p-space{
-      padding: 8px 0px;
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    
 </head>
 <body>
   <div class="email-container p-2 text-center">
