@@ -65,7 +65,7 @@ const deliveryOrderSchema = new Schema({
   },
   paymentStatus: {
     type: String,
-    enum:  ['pending','paid']
+    enum: ['pending', 'paid']
   },
   price: {
     type: Number,
@@ -86,16 +86,45 @@ const deliveryOrderSchema = new Schema({
   },
   vendor: {
     type: Boolean,
-    default : false
+    default: false
   },
   assignedRider: {
-    type : String,
+    type: String,
     default: ''
   },
   deliveryTrackStatus: {
     type: String,
     default: 'pending',
-    enum:['pending', 'started','picked','dropped']
+    enum: ['pending', 'started', 'picked', 'dropped']
+  },
+  // Additional properties as per comments
+  isExpress: {
+    type: Boolean,
+    default: false
+  },
+  isBulk: {
+    type: Boolean,
+    default: false
+  },
+  bulkOptions: {
+    type: Object, // can be replaced with a more specific schema if needed
+    default: {}
+  },
+  isSchedule: {
+    type: Boolean,
+    default: false
+  },
+  scheduleOptions: {
+    type: Object, // can be replaced with a more specific schema if needed
+    default: {}
+  },
+  costData: {
+    type: Object, // can be replaced with a more specific schema if needed
+    default: {}
+  },
+  locationData: {
+    type: Object, // can be replaced with a more specific schema if needed
+    default: {}
   }
 }, {
   timestamps: true // adds createdAt and updatedAt fields
@@ -104,8 +133,3 @@ const deliveryOrderSchema = new Schema({
 const DeliveryOrder = mongoose.model('DeliveryOrder', deliveryOrderSchema);
 
 module.exports = DeliveryOrder;
-
-
-
-
-

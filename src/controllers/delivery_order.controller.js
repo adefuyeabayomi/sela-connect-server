@@ -1,4 +1,5 @@
 const DeliveryOrder = require('../models/delivery_order.model');
+const { zonesData, determineZone } = require('../utils/zoneData');
 
 // Create a new delivery order
 const createDeliveryOrder = async (req, res) => {
@@ -59,7 +60,7 @@ const getDeliveryOrders = async (req, res) => {
 // Get a delivery order by ID
 const getDeliveryOrderById = async (req, res) => {
   const { id } = req.params;
-
+  
   try {
     const deliveryOrder = await DeliveryOrder.findById(id);
     if (!deliveryOrder) {
@@ -72,9 +73,43 @@ const getDeliveryOrderById = async (req, res) => {
   }
 };
 
+const calculateDeliveryCost = (req, res) => {
+  const { pickupArea, dropoffArea, type } = req.body;
+
+  // Validate the input
+  if (!pickupArea || !dropoffArea || !type) {
+    return res.status(400).json({ error: 'Please provide pickupArea, dropoffArea, and type.' });
+  }
+
+  // Check if the type is valid
+  const validTypes = ['bulk', 'regular', 'express'];
+  if (!validTypes.includes(type)) {
+    return res.status(400).json({ error: 'Invalid type. Must be bulk, regular, or express.' });
+  }
+
+  // Find the pricing data for the pickup and dropoff areas
+  const pickupZone = determineZone(pickupArea);
+  const dropoffZone = determineZone(dropoffArea)
+
+  if (!pickupZone) {
+    return res.status(404).json({ error: 'Pickup area not found.' });
+  }
+
+  if (!dropoffZone) {
+    return res.status(404).json({ error: 'Dropoff area not found.' });
+  }
+
+  // Return the price for the selected type
+  console.log({pickupZone, dropoffZone})
+  const price = zonesData[pickupZone][dropoffZone][type];
+  console.log(price)
+  return res.json({ cost: price });
+};
+
 module.exports = {
   createDeliveryOrder,
   updateDeliveryOrderById,
   getDeliveryOrders,
-  getDeliveryOrderById
+  getDeliveryOrderById,
+  calculateDeliveryCost
 };
