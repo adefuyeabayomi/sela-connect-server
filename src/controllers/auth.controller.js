@@ -10,6 +10,7 @@ const logger = require("../utils/logger");
 
 const signupWithEmailAndPassword = async (req, res) => {
   const { email, password, recoveryEmail, role } = req.body;
+  console.log({body: req.body})
   let acceptableRole = ["user", "admin"];
   let roleValid = acceptableRole.includes(role);
   // Validate email
@@ -103,6 +104,7 @@ const signupWithEmailAndPassword = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password, role } = req.body;
+  console.log({body: req.body})
   let acceptableRole = ["user", "admin"];
   let roleValid = acceptableRole.includes(role);
   // Validate email
@@ -118,9 +120,10 @@ const login = async (req, res) => {
   try {
     // Check if the user exists
     const authUser = await Auth.findOne({ email });
+    console.log({authUser})
     if (!authUser) {
-      logger.errorLogger("Invalid email or password");
-      return res.status(400).json({ message: "Invalid email or password" });
+      logger.errorLogger("User not found");
+      return res.status(404).json({ message: "User not found" });
     }
 
     // Check if the account is disabled or deleted
@@ -146,6 +149,7 @@ const login = async (req, res) => {
 
     // Verify the password
     const isMatch = await bcrypt.compare(password, authUser.hash);
+    console.log({isMatch})
     if (!isMatch) {
       logger.errorLogger("Invalid email or password");
       return res.status(400).json({ message: "Invalid email or password" });
@@ -153,7 +157,7 @@ const login = async (req, res) => {
     // Generate JWT token for session
     const expiresIn = "24h"; // same as used in jwt.sign
     const token = jwt.sign(
-      { userId: newUser._id, email: newUser.email, role: newUser.role },
+      { userId: authUser._id, email: authUser.email, role: authUser.role },
       config.JWT_SECRET,
       { expiresIn }
     );
