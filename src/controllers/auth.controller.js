@@ -104,7 +104,6 @@ const signupWithEmailAndPassword = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password, role } = req.body;
-  console.log({body: req.body})
   let acceptableRole = ["user", "admin"];
   let roleValid = acceptableRole.includes(role);
   // Validate email
@@ -120,7 +119,6 @@ const login = async (req, res) => {
   try {
     // Check if the user exists
     const authUser = await Auth.findOne({ email });
-    console.log({authUser})
     if (!authUser) {
       logger.errorLogger("User not found");
       return res.status(404).json({ message: "User not found" });
