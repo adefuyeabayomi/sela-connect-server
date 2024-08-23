@@ -1,47 +1,14 @@
 const config = require("./config");
 
 function welcome(name) {
-  return `
-    <!DOCTYPE html>
+  return `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Welcome</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-      <style>
-        .w-max-content {
-          width: max-content
-        }
-        body {
-          color: #264f03;
-        }
-        .logo {
-          width: 50px;
-        }
-        .heading-banner {
-          background-image: linear-gradient(-196deg, #2d7004, #79c500);
-          color: white !important;
-          border-radius: 15px;
-        }
-        h1,h2,h3,h4,h5,h6 {
-          color: #176917;
-        }
-        .heading-banner h1,.heading-banner h2,.heading-banner h3,.heading-banner h4,.heading-banner h5,.heading-banner h6{
-          color: white;
-        }
-    .button-1 {
-      background-color: #141612;
-      color: white;
-      border: 0px solid;
-      border-radius: 6px;
-      padding: 7px 30px;
-    }
-    .p-space{
-      padding: 8px 0px;
-    }
-
-      </style>
+      
     </head>
     <body>
       <div class="email-container p-2 text-center">
@@ -112,7 +79,6 @@ function passwordReset(name, resetToken) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Password Reset</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    
 </head>
 <body>
   <div class="email-container p-2 text-center">
