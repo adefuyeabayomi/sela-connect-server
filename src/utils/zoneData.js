@@ -1,5 +1,5 @@
- const zonesData = {
-    "mainlandA": {
+const zonesData = {
+  "mainlandA": {
       "mainlandA": { bulk: 5500, regular: 2000, express: 2500 },
       "mainlandB": { bulk: 6000, regular: 2500, express: 3000 },
       "mainlandC": { bulk: 7000, regular: 3000, express: 3500 },
@@ -8,8 +8,10 @@
       "islandA": { bulk: 5000, regular: 2500, express: 2800 },
       "islandB": { bulk: 5000, regular: 3000, express: 3500 },
       "islandC": { bulk: 8000, regular: 4000, express: 4500 },
-    },
-    "mainlandB": {
+      "islandD": { bulk: 5500, regular: 2000, express: 2500 },  // Added
+      "mainlandF": { bulk: 5500, regular: 2000, express: 2500 }  // Added
+  },
+  "mainlandB": {
       "mainlandA": { bulk: 6000, regular: 2500, express: 3000 },
       "mainlandB": { bulk: 6000, regular: 2500, express: 3000 },
       "mainlandC": { bulk: 7000, regular: 2500, express: 3000 },
@@ -18,8 +20,10 @@
       "islandA": { bulk: 5000, regular: 2500, express: 3000 },
       "islandB": { bulk: 5500, regular: 3000, express: 3500 },
       "islandC": { bulk: 8000, regular: 4000, express: 5000 },
-    },
-    "mainlandC": {
+      "islandD": { bulk: 6000, regular: 2500, express: 3000 },  // Added
+      "mainlandF": { bulk: 6000, regular: 2500, express: 3000 }  // Added
+  },
+  "mainlandC": {
       "mainlandA": { bulk: 7000, regular: 3000, express: 3500 },
       "mainlandB": { bulk: 7000, regular: 2500, express: 3000 },
       "mainlandC": { bulk: 7000, regular: 2000, express: 2500 },
@@ -28,57 +32,94 @@
       "islandA": { bulk: 8000, regular: 3000, express: 3500 },
       "islandB": { bulk: 9000, regular: 4000, express: 4500 },
       "islandC": { bulk: 10000, regular: 4500, express: 5000 },
-    },
-    "mainlandD": {
-      "mainlandA": { bulk: 7000, regular: [2500, 3500], express: [3000, 4000] },
-      "mainlandB": { bulk: 6000, regular: [2500, 3000], express: [3000, 3500] },
-      "mainlandC": { bulk: 6000, regular: [3000, 3500], express: 3500 },
-      "mainlandD": { bulk: 6000, regular: [2500, 3500], express: [2500, 3500] },
-      "mainlandE": { bulk: 8000, regular: [3500, 4500], express: [4000, 5500] },
-      "islandA": { bulk: 7000, regular: [3000, 4000], express: [3500, 4500] },
-      "islandB": { bulk: 8000, regular: [4000, 4500], express: [4500, 5500] },
-      "islandC": { bulk: 10000, regular: [4500, 6000], express: [5000, 7000] },
-    },
-    "mainlandE": {
+      "islandD": { bulk: 7000, regular: 3000, express: 3500 },  // Added
+      "mainlandF": { bulk: 7000, regular: 3000, express: 3500 }  // Added
+  },    
+  "mainlandD": {
+    "mainlandA": { bulk: 7000, regular: 3000, express: 3500 },
+    "mainlandB": { bulk: 6000, regular: 2750, express: 3250 },
+    "mainlandC": { bulk: 6000, regular: 3250, express: 3500 },
+    "mainlandD": { bulk: 6000, regular: 3000, express: 3000 },
+    "mainlandE": { bulk: 8000, regular: 4000, express: 4750 },
+    "islandA": { bulk: 7000, regular: 3500, express: 4000 },
+    "islandB": { bulk: 8000, regular: 4250, express: 5000 },
+    "islandC": { bulk: 10000, regular: 5250, express: 6000 },
+    "islandD": { bulk: 7000, regular: 3500, express: 4000 },  // Added
+    "mainlandF": { bulk: 7000, regular: 3500, express: 4000 }  // Added
+},
+  "mainlandE": {
       "mainlandA": { bulk: 7500, regular: 3500, express: 4000 },
       "mainlandB": { bulk: 7500, regular: 3500, express: 4000 },
       "mainlandC": { bulk: 8000, regular: 4000, express: 5000 },
-      "mainlandD": { bulk: 8000, regular: [3500, 4500], express: [4500, 5500] },
+      "mainlandD": { bulk: 8000, regular: 4000, express: 5000 },
       "mainlandE": { bulk: 5000, regular: 2500, express: 3000 },
       "islandA": { bulk: 7000, regular: 3500, express: 4500 },
       "islandB": { bulk: 10000, regular: 5000, express: 5500 },
       "islandC": { bulk: 10000, regular: 6000, express: 7000 },
-    },
-    "islandA": {
+      "islandD": { bulk: 7500, regular: 3500, express: 4000 },  // Added
+      "mainlandF": { bulk: 7500, regular: 3500, express: 4000 }  // Added
+  },
+  "mainlandF": {
+    "mainlandA": { bulk: 5500, regular: 2000, express: 2500 },
+    "mainlandB": { bulk: 6000, regular: 2500, express: 3000 },
+    "mainlandC": { bulk: 7000, regular: 3000, express: 3500 },
+    "mainlandD": { bulk: 9000, regular: 3000, express: 3500 },
+    "mainlandE": { bulk: 9000, regular: 3500, express: 4000 },
+    "islandA": { bulk: 5000, regular: 2500, express: 2800 },
+    "islandB": { bulk: 5000, regular: 3000, express: 3500 },
+    "islandC": { bulk: 8000, regular: 4000, express: 4500 },
+    "islandD": { bulk: 5500, regular: 2000, express: 2500 },  // Added
+    "mainlandF": { bulk: 5500, regular: 2000, express: 2500 }  // Added
+},
+  "islandA": {
       "mainlandA": { bulk: 9000, regular: 2500, express: 3000 },
       "mainlandB": { bulk: 7500, regular: 3000, express: 3500 },
       "mainlandC": { bulk: 8000, regular: 3500, express: 4000 },
-      "mainlandD": { bulk: 7000, regular: [3000, 4000], express: [3500, 4500] },
+      "mainlandD": { bulk: 7000, regular: 3500, express: 4500 },
       "mainlandE": { bulk: 7000, regular: 3500, express: 4500 },
       "islandA": { bulk: 6500, regular: 2000, express: 2500 },
       "islandB": { bulk: 7000, regular: 2500, express: 3000 },
-    },
-    "islandB": {
+      "islandC": { bulk: 9000, regular: 3500, express: 4000 },
+      "islandD": { bulk: 9000, regular: 2500, express: 3000 },  // Added
+      "mainlandF": { bulk: 9000, regular: 2500, express: 3000 }  // Added
+  },
+  "islandB": {
       "mainlandA": { bulk: 9000, regular: 3500, express: 4000 },
       "mainlandB": { bulk: 9000, regular: 3500, express: 4000 },
       "mainlandC": { bulk: 9000, regular: 4000, express: 4500 },
-      "mainlandD": { bulk: 9000, regular: [4000, 4500], express: [4500, 5000] },
+      "mainlandD": { bulk: 9000, regular: 4000, express: 5000 },
       "mainlandE": { bulk: 10000, regular: 5000, express: 5500 },
       "islandA": { bulk: 7000, regular: 2500, express: 3000 },
       "islandB": { bulk: 6500, regular: 2000, express: 2500 },
       "islandC": { bulk: 7000, regular: 3500, express: 4000 },
-    },
-    "islandC": {
-      "mainlandA": { bulk: 9000, regular: 3500, express: 4000 },
+      "islandD": { bulk: 9000, regular: 3500, express: 4000 },  // Added
+      "mainlandF": { bulk: 9000, regular: 3500, express: 4000 }  // Added
+  },
+  "islandC": {
+      "mainlandA": { bulk: 9000, regular: 4000, express: 4500 },
       "mainlandB": { bulk: 9000, regular: 3500, express: 4000 },
-      "mainlandC": { bulk: 9000, regular: 4000, express: 4500 },
-      "mainlandD": { bulk: 9500, regular: 4500, express: 5000 },
+      "mainlandC": { bulk: 10000, regular: 4500, express: 5000 },
+      "mainlandD": { bulk: 9000, regular: 4500, express: 5500 },
       "mainlandE": { bulk: 10000, regular: 6000, express: 7000 },
       "islandA": { bulk: 7000, regular: 3500, express: 4000 },
-      "islandB": { bulk: 6500, regular: 3000, express: 3500 },
-      "islandC": { bulk: 5500, regular: 2500, express: 3000 },
+      "islandB": { bulk: 7000, regular: 3500, express: 4000 },
+      "islandC": { bulk: 6500, regular: 2000, express: 2500 },
+      "islandD": { bulk: 9000, regular: 4000, express: 4500 },  // Added
+      "mainlandF": { bulk: 9000, regular: 4000, express: 4500 }  // Added
+  },
+  "islandD": {
+        "mainlandA": { bulk: 5500, regular: 2000, express: 2500 },
+        "mainlandB": { bulk: 6000, regular: 2500, express: 3000 },
+        "mainlandC": { bulk: 7000, regular: 3000, express: 3500 },
+        "mainlandD": { bulk: 9000, regular: 3000, express: 3500 },
+        "mainlandE": { bulk: 9000, regular: 3500, express: 4000 },
+        "islandA": { bulk: 5000, regular: 2500, express: 2800 },
+        "islandB": { bulk: 5000, regular: 3000, express: 3500 },
+        "islandC": { bulk: 8000, regular: 4000, express: 4500 },
+        "islandD": { bulk: 5500, regular: 2000, express: 2500 },  // Added
+        "mainlandF": { bulk: 5500, regular: 2000, express: 2500 }  // Added
     }
-  };
+};
 
   const areasByZone = {
     mainlandA: [

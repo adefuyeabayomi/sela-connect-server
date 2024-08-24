@@ -148,3 +148,195 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-23T16:16:04.976Z*
 Success : connected to database
+## Info
+*2024-08-23T16:30:20.185Z*
+Success: connected to database
+## Info
+*2024-08-23T16:30:20.219Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-23T16:30:27.978Z*
+Success: connected to database
+## Info
+*2024-08-23T16:30:28.020Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-23T16:30:32.105Z*
+Success : connected to database
+## Info
+*2024-08-23T16:30:46.812Z*
+Success: connected to database
+## Info
+*2024-08-23T16:30:46.853Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-23T16:30:51.403Z*
+Success : connected to database
+## Info
+*2024-08-24T11:09:14.720Z*
+Success: connected to database
+## Info
+*2024-08-24T11:09:14.759Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:09:17.389Z*
+Success : connected to database
+## Info
+*2024-08-24T11:09:28.023Z*
+Success: connected to database
+## Info
+*2024-08-24T11:09:28.069Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:09:30.551Z*
+Success : connected to database
+## Info
+*2024-08-24T11:09:46.048Z*
+Success: connected to database
+## Info
+*2024-08-24T11:09:46.089Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-24T11:09:46.093Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-24T11:09:46.096Z*
+Error in connecting to database
+## Error
+*2024-08-24T11:09:46.098Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-24T11:09:56.491Z*
+Success: connected to database
+## Info
+*2024-08-24T11:09:56.538Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:09:58.992Z*
+Success : connected to database
+## Info
+*2024-08-24T11:10:19.252Z*
+Success: connected to database
+## Info
+*2024-08-24T11:10:19.293Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:10:30.155Z*
+Success: connected to database
+## Info
+*2024-08-24T11:10:30.191Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:10:32.571Z*
+Success : connected to database
+## Info
+*2024-08-24T11:10:45.323Z*
+Success: connected to database
+## Info
+*2024-08-24T11:10:45.355Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:10:47.976Z*
+Success : connected to database
+## Info
+*2024-08-24T11:11:03.862Z*
+Success: connected to database
+## Info
+*2024-08-24T11:11:03.899Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:11:06.289Z*
+Success : connected to database
+## Info
+*2024-08-24T11:11:13.375Z*
+Success: connected to database
+## Info
+*2024-08-24T11:11:13.432Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:11:16.033Z*
+Success : connected to database
+## Info
+*2024-08-24T11:11:21.047Z*
+Success: connected to database
+## Info
+*2024-08-24T11:11:21.084Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-24T11:11:21.099Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-24T11:11:21.101Z*
+Error in connecting to database
+## Error
+*2024-08-24T11:11:21.103Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-24T11:11:50.022Z*
+Success: connected to database
+## Info
+*2024-08-24T11:11:50.053Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-24T11:11:52.094Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-24T11:11:52.098Z*
+Error in connecting to database
+## Error
+*2024-08-24T11:11:52.100Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-24T11:11:55.603Z*
+Success: connected to database
+## Info
+*2024-08-24T11:11:55.648Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:11:58.490Z*
+Success : connected to database
+## Info
+*2024-08-24T11:42:53.705Z*
+Success: connected to database
+## Info
+*2024-08-24T11:42:53.748Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-24T11:43:01.423Z*
+Success : connected to database

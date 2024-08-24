@@ -50,11 +50,11 @@ const deliveryOrderSchema = new Schema({
     type: String,
     required: true
   },
-  pickupLga: {
+  pickupArea: {
     type: String,
     required: true
   },
-  dropoffLga: {
+  dropoffArea: {
     type: String,
     required: true
   },
@@ -73,7 +73,7 @@ const deliveryOrderSchema = new Schema({
   },
   totalDistance: {
     type: Number,
-    required: true
+    default : 0
   },
   user: {
     type: Schema.Types.String,
