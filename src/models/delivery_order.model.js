@@ -79,6 +79,10 @@ const deliveryOrderSchema = new Schema({
     type: Schema.Types.String,
     ref: 'Auth' // assuming there is a User model
   },
+  email: {
+    type: String,
+    default: ''
+  },
   deliveryId: {
     type: String,
     required: true,
