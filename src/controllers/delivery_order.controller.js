@@ -3,6 +3,7 @@ const { zonesData, determineZone } = require('../utils/zoneData');
 const axios = require('axios')
 const config = require("../utils/config")
 const monnifyUtils = require('../utils/monnify.utils')
+const logger = require('../utils/logger')
 
 // Create a new delivery order
 const createDeliveryOrder = async (req, res) => {
@@ -111,6 +112,7 @@ const calculateDeliveryCost = (req, res) => {
 
 const confirmPayment = async (req, res) => {
   const { id, paymentReference, transactionReference } = req.body;
+  console.log({body: req.body})
   // get auth token here.
   let token = await monnifyUtils.generateMonnifyAccessToken()
   console.log({token})
@@ -120,24 +122,28 @@ const confirmPayment = async (req, res) => {
     if (!deliveryOrder) {
       return res.status(404).json({ message: 'Delivery order not found' });
     }
-
+    const encodedTransactionReference = encodeURIComponent(transactionReference);
+    console.log({encodedTransactionReference})
     // Call the Monnify API to verify the transaction
-    const monnifyResponse = await axios.get(`${config.monnifyBaseUrl}/api/v2/transactions/${transactionReference}`, {
+    const monnifyResponse = await axios.get(`${config.monnifyBaseUrl}/api/v2/transactions/${encodedTransactionReference}`, {
       headers: {
-        Authorization: `Basic ${token}`, // Assuming Monnify requires an API key in the headers
+        Authorization: `Bearer ${token}`, // Assuming Monnify requires an API key in the headers
       },
     });
 
     const { requestSuccessful, responseBody } = monnifyResponse.data;
-
+    
     if (!requestSuccessful) {
-      return res.status(400).json({ message: 'Transaction verification failed' });
+      return res.status(400).json({ message: 'Transaction verification failed' })
     }
 
+    console.log({ requestSuccessful, responseBody })
     const { amountPaid, paymentStatus, paymentReference } = responseBody;
+    const bool = Number(amountPaid) !== Number(deliveryOrder.price)
+    console.log({ amountPaid, orderPrice: deliveryOrder.price, paymentStatus, paymentReference, bool })
 
     // Cross-reference the amount
-    if (amountPaid !== deliveryOrder.price) {
+    if (bool) {
       return res.status(400).json({ message: 'Payment amount does not match the order amount' });
     }
 
@@ -153,8 +159,8 @@ const confirmPayment = async (req, res) => {
       return res.status(400).json({ message: 'Payment not successful' });
     }
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Server error' });
+    logger.errorLogger(error)
+    return res.status(500).json({ message: 'Server error', error });
   }
 };
 
