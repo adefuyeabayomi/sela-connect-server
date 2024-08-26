@@ -129,6 +129,14 @@ const deliveryOrderSchema = new Schema({
   locationData: {
     type: Object, // can be replaced with a more specific schema if needed
     default: {}
+  },
+  paymentReference: {
+    type: String,
+    default: ''
+  },
+  transactionReference: {
+    type: String,
+    default: ''
   }
 }, {
   timestamps: true // adds createdAt and updatedAt fields

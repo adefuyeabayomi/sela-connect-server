@@ -400,3 +400,339 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-26T02:23:36.812Z*
 Success : connected to database
+## Info
+*2024-08-26T04:37:27.034Z*
+Success: connected to database
+## Info
+*2024-08-26T04:37:27.069Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:37:29.827Z*
+Success : connected to database
+## Info
+*2024-08-26T04:38:53.978Z*
+Success: connected to database
+## Info
+*2024-08-26T04:38:53.999Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:39:01.796Z*
+Success: connected to database
+## Info
+*2024-08-26T04:39:01.856Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:39:04.297Z*
+Success : connected to database
+## Info
+*2024-08-26T04:39:36.017Z*
+Success: connected to database
+## Info
+*2024-08-26T04:39:36.037Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:39:38.526Z*
+Success : connected to database
+## Info
+*2024-08-26T04:41:06.999Z*
+Success: connected to database
+## Info
+*2024-08-26T04:41:07.051Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:41:12.775Z*
+Success: connected to database
+## Info
+*2024-08-26T04:41:12.826Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:41:15.258Z*
+Success : connected to database
+## Info
+*2024-08-26T04:42:46.195Z*
+Success: connected to database
+## Info
+*2024-08-26T04:42:46.221Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:42:51.178Z*
+Success: connected to database
+## Info
+*2024-08-26T04:42:51.202Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T04:42:53.490Z*
+Success : connected to database
+## Info
+*2024-08-26T11:29:36.245Z*
+Success: connected to database
+## Info
+*2024-08-26T11:29:36.317Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-26T11:30:01.680Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-26T11:30:01.748Z*
+Error in connecting to database
+## Error
+*2024-08-26T11:30:01.757Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-26T11:31:16.412Z*
+Success: connected to database
+## Error
+*2024-08-26T11:31:16.428Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-26T11:31:16.445Z*
+Error in connecting to database
+## Error
+*2024-08-26T11:31:16.447Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-26T11:31:16.473Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:36:01.942Z*
+Success: connected to database
+## Error
+*2024-08-26T11:36:01.959Z*
+```javascript
+{
+  "code": "ECONNREFUSED",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-26T11:36:01.981Z*
+Error in connecting to database
+## Error
+*2024-08-26T11:36:01.983Z*
+```javascript
+{
+  "code": "ECONNREFUSED",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-26T11:36:02.015Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:36:14.405Z*
+Success: connected to database
+## Info
+*2024-08-26T11:36:14.426Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-26T11:36:14.448Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-26T11:36:14.452Z*
+Error in connecting to database
+## Error
+*2024-08-26T11:36:14.454Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-26T11:36:59.872Z*
+Success: connected to database
+## Info
+*2024-08-26T11:36:59.905Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-26T11:37:26.163Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-26T11:37:26.171Z*
+Error in connecting to database
+## Error
+*2024-08-26T11:37:26.181Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-26T11:42:29.530Z*
+Success: connected to database
+## Info
+*2024-08-26T11:42:29.566Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-26T11:42:51.694Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-26T11:42:51.702Z*
+Error in connecting to database
+## Error
+*2024-08-26T11:42:51.711Z*
+```javascript
+{
+  "code": "ETIMEOUT",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Info
+*2024-08-26T11:48:51.016Z*
+Success: connected to database
+## Info
+*2024-08-26T11:48:51.056Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:48:54.330Z*
+Success : connected to database
+## Info
+*2024-08-26T11:53:39.101Z*
+Success: connected to database
+## Info
+*2024-08-26T11:53:39.211Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:53:42.180Z*
+Success : connected to database
+## Info
+*2024-08-26T11:54:49.642Z*
+Success: connected to database
+## Info
+*2024-08-26T11:54:49.667Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:54:52.814Z*
+Success : connected to database
+## Info
+*2024-08-26T11:55:32.657Z*
+Success: connected to database
+## Info
+*2024-08-26T11:55:32.712Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:55:35.175Z*
+Success : connected to database
+## Info
+*2024-08-26T11:55:38.740Z*
+Success: connected to database
+## Info
+*2024-08-26T11:55:38.789Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:55:41.744Z*
+Success : connected to database
+## Info
+*2024-08-26T11:55:53.450Z*
+Success: connected to database
+## Info
+*2024-08-26T11:55:53.523Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:55:57.534Z*
+Success: connected to database
+## Info
+*2024-08-26T11:55:57.620Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:56:00.189Z*
+Success : connected to database
+## Info
+*2024-08-26T11:56:20.429Z*
+Success: connected to database
+## Info
+*2024-08-26T11:56:20.488Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:56:37.364Z*
+Success: connected to database
+## Info
+*2024-08-26T11:56:37.408Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:56:42.050Z*
+Success : connected to database
+## Info
+*2024-08-26T11:56:48.116Z*
+Success: connected to database
+## Info
+*2024-08-26T11:56:48.172Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:56:50.749Z*
+Success : connected to database
+## Info
+*2024-08-26T11:56:56.303Z*
+Success: connected to database
+## Info
+*2024-08-26T11:56:56.365Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:56:59.265Z*
+Success : connected to database
+## Info
+*2024-08-26T11:57:03.910Z*
+Success: connected to database
+## Info
+*2024-08-26T11:57:03.977Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:57:06.657Z*
+Success : connected to database
+## Info
+*2024-08-26T11:57:12.409Z*
+Success: connected to database
+## Info
+*2024-08-26T11:57:12.450Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-26T11:57:15.006Z*
+Success : connected to database

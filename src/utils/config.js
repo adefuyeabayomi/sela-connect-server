@@ -18,6 +18,9 @@ const cloudingaryApiSecret = process.env.CLOUDINARY_API_SECRET;
 const companyCallLine = process.env.COMPANY_CALL_LINE;
 const companySupportMail = process.env.COMPANY_SUPPORT_MAIL;
 const adminMails = process.env.ADMIN_MAILS.split(",");
+const monnifyApiKey = process.env.MONNIFY_API_KEY
+const monnifyBaseUrl = process.env.MONNIFY_BASE_URL
+const monnifySecretKey = process.env.MONNIFY_SECRET_KEY
 
 module.exports = {
   port,
@@ -38,4 +41,7 @@ module.exports = {
   companyCallLine,
   companySupportMail,
   adminMails,
+  monnifyApiKey,
+  monnifyBaseUrl,
+  monnifySecretKey
 };

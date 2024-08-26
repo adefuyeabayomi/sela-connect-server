@@ -1,5 +1,8 @@
 const DeliveryOrder = require('../models/delivery_order.model');
 const { zonesData, determineZone } = require('../utils/zoneData');
+const axios = require('axios')
+const config = require("../utils/config")
+const monnifyUtils = require('../utils/monnify.utils')
 
 // Create a new delivery order
 const createDeliveryOrder = async (req, res) => {
@@ -106,10 +109,60 @@ const calculateDeliveryCost = (req, res) => {
   return res.json({ cost: price });
 };
 
+const confirmPayment = async (req, res) => {
+  const { id, paymentReference, transactionReference } = req.body;
+  // get auth token here.
+  let token = await monnifyUtils.generateMonnifyAccessToken()
+  console.log({token})
+  try { 
+    // Fetch the delivery order by ID
+    const deliveryOrder = await DeliveryOrder.findById(id);
+    if (!deliveryOrder) {
+      return res.status(404).json({ message: 'Delivery order not found' });
+    }
+
+    // Call the Monnify API to verify the transaction
+    const monnifyResponse = await axios.get(`${config.monnifyBaseUrl}/api/v2/transactions/${transactionReference}`, {
+      headers: {
+        Authorization: `Basic ${token}`, // Assuming Monnify requires an API key in the headers
+      },
+    });
+
+    const { requestSuccessful, responseBody } = monnifyResponse.data;
+
+    if (!requestSuccessful) {
+      return res.status(400).json({ message: 'Transaction verification failed' });
+    }
+
+    const { amountPaid, paymentStatus, paymentReference } = responseBody;
+
+    // Cross-reference the amount
+    if (amountPaid !== deliveryOrder.price) {
+      return res.status(400).json({ message: 'Payment amount does not match the order amount' });
+    }
+
+    // Update the delivery order with payment details if payment is successful
+    if (paymentStatus === 'PAID') {
+      deliveryOrder.paymentReference = paymentReference;
+      deliveryOrder.transactionReference = transactionReference;
+      deliveryOrder.paymentStatus = 'paid';
+
+      await deliveryOrder.save();
+      return res.status(200).json(deliveryOrder);
+    } else {
+      return res.status(400).json({ message: 'Payment not successful' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
 module.exports = {
   createDeliveryOrder,
   updateDeliveryOrderById,
   getDeliveryOrders,
   getDeliveryOrderById,
-  calculateDeliveryCost
+  calculateDeliveryCost,
+  confirmPayment
 };
