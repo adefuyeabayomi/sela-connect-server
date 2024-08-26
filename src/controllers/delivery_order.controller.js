@@ -19,7 +19,7 @@ const updateDeliveryOrderById = async (req, res) => {
   const { id } = req.params;
   console.log('requestbody',id, req.body)
   try {
-    const deliveryOrder = await DeliveryOrder.findOne({deliveryId: id});
+    const deliveryOrder = await DeliveryOrder.findById(id);
     console.log({deliveryOrder})
     if (!deliveryOrder) {
       return res.status(404).json({ message: 'Delivery order not found' });
