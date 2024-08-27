@@ -46,11 +46,18 @@ const updateDeliveryOrderById = async (req, res) => {
 
 // Get delivery orders with pagination
 const getDeliveryOrders = async (req, res) => {
-  const { page = 1, limit = 30 } = req.query;
+  const { page = 1, limit = 30, user, status } = req.query;
   const skip = (page - 1) * limit;
+  let query = {}
+  if(user){
+    query.user = user
+  }
+  if(status){
+    query.deliveryTrackStatus = status
+  }
 
   try {
-    const orders = await DeliveryOrder.find()
+    const orders = await DeliveryOrder.find(query)
       .skip(skip)
       .limit(Number(limit))
       .exec();
