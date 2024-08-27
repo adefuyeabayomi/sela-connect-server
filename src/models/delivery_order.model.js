@@ -88,6 +88,11 @@ const deliveryOrderSchema = new Schema({
     required: true,
     unique: true
   },
+  deliveryType: {
+    type: String,
+    required: true,
+    enum: ['regular', 'bulk', 'express']
+  },
   vendor: {
     type: Boolean,
     default: false
