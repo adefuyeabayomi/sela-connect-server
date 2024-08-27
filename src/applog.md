@@ -121,3 +121,30 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-27T14:48:57.706Z*
 Success : connected to database
+## Info
+*2024-08-27T14:56:44.126Z*
+Success: connected to database
+## Info
+*2024-08-27T14:56:44.151Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-27T14:56:44.494Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```
+## Error
+*2024-08-27T14:56:44.503Z*
+Error in connecting to database
+## Error
+*2024-08-27T14:56:44.510Z*
+```javascript
+{
+  "code": "ESERVFAIL",
+  "syscall": "querySrv",
+  "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
+}
+```

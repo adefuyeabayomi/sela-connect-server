@@ -50,7 +50,7 @@ const getDeliveryOrders = async (req, res) => {
   const skip = (page - 1) * limit;
   let query = {}
   if(user){
-    query.user = user
+    query.email = user
   }
   if(status){
     query.deliveryTrackStatus = status
