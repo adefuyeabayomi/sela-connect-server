@@ -11,7 +11,7 @@ const authSchema = new mongoose.Schema({
   verified: { type: Boolean, default: false },
   verifyTokenString: { type: String },
   resetTokenString: { type: String },
-  role: { type: String, default: "user", enum: ["user", "admin"] }, // Add role field
+  role: { type: String, default: "user", enum: ["user", "admin","rider"] }, // Add role field
 });
 
 const Auth = mongoose.model("Auth", authSchema);

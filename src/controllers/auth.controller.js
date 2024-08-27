@@ -11,7 +11,7 @@ const logger = require("../utils/logger");
 const signupWithEmailAndPassword = async (req, res) => {
   const { email, password, recoveryEmail, role } = req.body;
   console.log({body: req.body})
-  let acceptableRole = ["user", "admin"];
+  let acceptableRole = ["user", "admin", "rider"];
   let roleValid = acceptableRole.includes(role);
   // Validate email
   if (!validator.isEmail(email)) {
@@ -104,7 +104,7 @@ const signupWithEmailAndPassword = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password, role } = req.body;
-  let acceptableRole = ["user", "admin"];
+  let acceptableRole = ["user", "admin", "rider"];
   let roleValid = acceptableRole.includes(role);
   // Validate email
   if (!validator.isEmail(email)) {
@@ -392,7 +392,7 @@ const disableAccount = async (req, res) => {
 
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
-
+  
   try {
     const user = await Auth.findOne({ email });
     if (!user) {
