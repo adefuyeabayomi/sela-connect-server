@@ -64,6 +64,10 @@ const signupWithEmailAndPassword = async (req, res) => {
       role,
     });
 
+    if(role == 'rider'){
+      newUser.disabled = true
+    }
+
     await newUser.save();
     // Generate JWT token for session
     const expiresIn = "24h"; // same as used in jwt.sign
@@ -198,7 +202,6 @@ const reauthenticate = async (req, res) => {
       res.status(500).json({ message: "Server error" });
   }
 };
-
 
 const resendVerificationEmail = async (req, res) => {
   const { email } = req.body;
