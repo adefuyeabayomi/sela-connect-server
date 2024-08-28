@@ -171,11 +171,65 @@ const confirmPayment = async (req, res) => {
   }
 };
 
+const getSortedDeliveryOrders = async (req, res) => {
+  try {
+    const { deliveryTrackStatus } = req.query;
+
+    // Filter by pending and dropped orders only
+    const query = {
+      deliveryTrackStatus: { $in: deliveryTrackStatus }
+    };
+
+    // Fetch matching delivery orders
+    const deliveryOrders = await DeliveryOrder.find(query).lean();
+    console.log({deliveryOrders})
+
+    // Calculate the total number of pending deliveries
+    const pendingTotal = deliveryOrders.filter(order => order.deliveryTrackStatus === 'pending').length;
+
+    // Get today's date in ISO format (ignore time)
+    const today = new Date().toISOString().split('T')[0];
+
+    // Calculate the total number of deliveries scheduled for today
+    const todayDeliveries = deliveryOrders.filter(order =>
+      order.isSchedule && new Date(order.scheduleOptions.date).toISOString().split('T')[0] === today
+    ).length;
+
+    // Calculate the number of deliveries scheduled for other days
+    const otherDays = deliveryOrders
+      .filter(order =>
+        order.isSchedule && new Date(order.scheduleOptions.date).toISOString().split('T')[0] !== today
+      )
+      .reduce((acc, order) => {
+        const scheduledDate = new Date(order.scheduleOptions.date).toISOString().split('T')[0];
+        const existingEntry = acc.find(entry => entry.date === scheduledDate);
+
+        if (existingEntry) {
+          existingEntry.total += 1;
+        } else {
+          acc.push({ date: scheduledDate, total: 1 });
+        }
+
+        return acc;
+      }, []);
+
+    return res.status(200).json({
+      pendingTotal,
+      today: todayDeliveries,
+      otherDays
+    });
+  } catch (error) {
+    console.error('Error fetching sorted delivery orders:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
 module.exports = {
   createDeliveryOrder,
   updateDeliveryOrderById,
   getDeliveryOrders,
   getDeliveryOrderById,
   calculateDeliveryCost,
-  confirmPayment
+  confirmPayment,
+  getSortedDeliveryOrders
 };

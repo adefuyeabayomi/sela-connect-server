@@ -1,3 +1,6 @@
 ::1 - - [26/Aug/2024:13:00:49 +0000] "GET /clear-request-logs HTTP/1.1" 200 84 "http://localhost:5174/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 ::1 - - [26/Aug/2024:13:00:50 +0000] "GET /clear-app-logs HTTP/1.1" 200 16 "http://localhost:5174/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 ::1 - - [26/Aug/2024:23:19:35 +0000] "GET /delivery-orders?page=1&limit=30 HTTP/1.1" 200 4199 "http://localhost:5174/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [28/Aug/2024:08:51:09 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending HTTP/1.1" 500 26 "-" "PostmanRuntime/7.39.1"
+::1 - - [28/Aug/2024:08:51:40 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending HTTP/1.1" 500 26 "-" "PostmanRuntime/7.39.1"
+::1 - - [28/Aug/2024:08:53:38 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending HTTP/1.1" 500 26 "-" "PostmanRuntime/7.39.1"

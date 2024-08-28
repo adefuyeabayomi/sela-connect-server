@@ -148,3 +148,48 @@ Error in connecting to database
   "hostname": "_mongodb._tcp.cluster0.ppt7z.mongodb.net"
 }
 ```
+## Info
+*2024-08-28T08:51:08.009Z*
+Success: connected to database
+## Info
+*2024-08-28T08:51:08.096Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T08:51:10.946Z*
+Success : connected to database
+## Info
+*2024-08-28T08:51:35.338Z*
+Success: connected to database
+## Info
+*2024-08-28T08:51:35.375Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T08:51:38.011Z*
+Success : connected to database
+## Info
+*2024-08-28T08:52:41.505Z*
+Success: connected to database
+## Info
+*2024-08-28T08:52:41.547Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T08:52:46.111Z*
+Success : connected to database
+## Info
+*2024-08-28T08:52:57.856Z*
+Success: connected to database
+## Info
+*2024-08-28T08:52:57.882Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T08:53:00.556Z*
+Success : connected to database
+## Info
+*2024-08-28T08:54:24.774Z*
+Success: connected to database
+## Info
+*2024-08-28T08:54:24.831Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T08:54:27.595Z*
+Success : connected to database
