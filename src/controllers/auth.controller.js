@@ -300,7 +300,7 @@ const getAccounts = async (req, res) => {
   }
 
   try {
-    const accounts = await Auth.find(query)
+    let accounts = await Auth.find(query)
       .skip(skip)
       .limit(Number(limit))
       .exec();
@@ -320,10 +320,10 @@ const getAccounts = async (req, res) => {
 
 // Get a delivery order by ID
 const getAccountById = async (req, res) => {
-  const { id } = req.params;
+  let { id } = req.params;
   
   try {
-    const account = await Auth.findById(id);
+    let account = await Auth.findById(id);
     if (!account) {
       return res.status(404).json({ message: 'Account not found found' });
     }
