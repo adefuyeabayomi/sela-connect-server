@@ -7,7 +7,8 @@ const {
   getDeliveryOrderById,
   calculateDeliveryCost,
   confirmPayment,
-  getSortedDeliveryOrders
+  getSortedDeliveryOrders,
+  getOrdersByIds
 } = require('../controllers/delivery_order.controller');
 const verifyToken = require('../functions/verifyToken.middleware'); // Assuming this middleware is used for authentication
 
@@ -29,6 +30,9 @@ router.post('/calculate-delivery-cost', calculateDeliveryCost);
 
 // Route to confirm payment
 router.post('/confirm-payment',confirmPayment);
+
+// Define the new endpoint for fetching delivery orders by IDs
+router.post('/orders-by-ids', getOrdersByIds);
 
 
 module.exports = router;

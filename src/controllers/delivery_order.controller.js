@@ -68,7 +68,24 @@ const getDeliveryOrders = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+const getOrdersByIds = async (req, res) => {
+  const { ids } = req.body; // Array of IDs passed in the request body
 
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ message: 'Invalid or missing IDs array' });
+  }
+
+  try {
+    // Fetch orders by IDs
+    const orders = await DeliveryOrder.find({ _id: { $in: ids } });
+
+    // Return the fetched orders
+    return res.status(200).json(orders);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
 // Get a delivery order by ID
 const getDeliveryOrderById = async (req, res) => {
   const { id } = req.params;
@@ -223,7 +240,7 @@ const getSortedDeliveryOrders1 = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
-const getSortedDeliveryOrders = async (req, res) => {
+const getSortedDeliveryOrders2 = async (req, res) => {
   const { deliveryTrackStatus } = req.query;
 
   try {
@@ -273,7 +290,66 @@ const getSortedDeliveryOrders = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+const getSortedDeliveryOrders = async (req, res) => {
+  try {
+    // Fetch pending and dropped delivery orders
+    const orders = await DeliveryOrder.find({
+      deliveryTrackStatus: { $in: ['pending', 'dropped'] }
+    }).exec();
 
+    const today = moment().startOf('day'); // Start of today (00:00:00)
+    const todayEnd = moment().endOf('day'); // End of today (23:59:59)
+
+    let pendingTotal = 0;
+    let todayCount = 0;
+    const todayDeliveries = [];
+    const otherDaysMap = new Map();
+
+    orders.forEach(order => {
+      if (!order || !order.createdAt) return; // Ensure order and createdAt exist
+
+      const scheduleDate = order.isSchedule && order.scheduleOptions && order.scheduleOptions.date
+        ? moment(order.scheduleOptions.date)
+        : null;
+
+      const isScheduledForToday = scheduleDate && scheduleDate.isBetween(today, todayEnd, null, '[]');
+      const isToday = !order.isSchedule && moment(order.createdAt).isBetween(today, todayEnd, null, '[]');
+
+      if (order.deliveryTrackStatus === 'pending') {
+        pendingTotal += 1;
+      }
+
+      if (isScheduledForToday || isToday) {
+        todayCount += 1;
+        todayDeliveries.push(order._id); // Add order ID to todayDeliveries
+      } else if (scheduleDate) {
+        const dateStr = scheduleDate.format('YYYY-MM-DD');
+        if (!otherDaysMap.has(dateStr)) {
+          otherDaysMap.set(dateStr, { total: 0, ids: [] });
+        }
+        const dayData = otherDaysMap.get(dateStr);
+        dayData.total += 1;
+        dayData.ids.push(order._id);
+      }
+    });
+
+    const otherDaysArray = Array.from(otherDaysMap, ([date, data]) => ({
+      date,
+      total: data.total,
+      ids: data.ids,
+    }));
+
+    return res.status(200).json({
+      pendingTotal,
+      today: todayCount,
+      todayDeliveries, // Array of IDs for today's deliveries
+      otherDays: otherDaysArray,
+    });
+  } catch (error) {
+    console.error("Error in getSortedDeliveryOrders:", error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
 module.exports = {
   createDeliveryOrder,
   updateDeliveryOrderById,
@@ -281,5 +357,6 @@ module.exports = {
   getDeliveryOrderById,
   calculateDeliveryCost,
   confirmPayment,
-  getSortedDeliveryOrders
+  getSortedDeliveryOrders,
+  getOrdersByIds
 };
