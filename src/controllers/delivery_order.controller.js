@@ -291,10 +291,12 @@ const getSortedDeliveryOrders2 = async (req, res) => {
   }
 };
 const getSortedDeliveryOrders = async (req, res) => {
+
+  const { deliveryTrackStatus } = req.query;
   try {
     // Fetch pending and dropped delivery orders
     const orders = await DeliveryOrder.find({
-      deliveryTrackStatus: { $in: ['pending', 'dropped'] }
+      deliveryTrackStatus: { $in: deliveryTrackStatus }
     }).exec();
 
     const today = moment().startOf('day'); // Start of today (00:00:00)
