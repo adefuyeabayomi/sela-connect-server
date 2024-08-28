@@ -375,12 +375,11 @@ const getSortedDeliveryOrders = async (req, res) => {
         pendingTotal += 1;
       }
 
-      // Check if the order is scheduled for today or is not scheduled but created today
-      const isToday =
-        order.isSchedule && moment(order.scheduleOptions.date).isSame(today, 'day') ||
-        !order.isSchedule && moment(order.createdAt).isSame(today, 'day');
+      // Check if the order is scheduled for today or earlier, or is not scheduled but created today
+      const isScheduledForTodayOrEarlier = order.isSchedule && moment(order.scheduleOptions.date).isSameOrBefore(today, 'day');
+      const isNotScheduledButCreatedToday = !order.isSchedule && moment(order.createdAt).isSame(today, 'day');
 
-      if (isToday) {
+      if (isScheduledForTodayOrEarlier || isNotScheduledButCreatedToday) {
         todayTotal += 1;
         todayDeliveries.push(order._id);
       } else if (order.isSchedule) {
@@ -414,6 +413,7 @@ const getSortedDeliveryOrders = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 module.exports = {
   createDeliveryOrder,
