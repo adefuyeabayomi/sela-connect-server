@@ -9,7 +9,7 @@ router.post(
 );
 router.get("/verify", authController.verifyEmail);
 router.post("/login", authController.login);
-router.put("/update", verifyToken, authController.updateUserDetails);
+router.put("/update/:id", verifyToken, authController.updateUserDetails);
 router.delete("/delete", verifyToken, authController.deleteAccount);
 router.put("/disable", verifyToken, authController.disableAccount);
 router.post("/forgot-password", authController.forgotPassword);

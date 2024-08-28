@@ -342,7 +342,7 @@ const getAccountById = async (req, res) => {
 
 const updateUserDetails = async (req, res) => {
   const { email, password, recoveryEmail } = req.body;
-  const userId = req.user.userId;
+  const userId = req.params.id
 
   try {
     // Find the user by ID
