@@ -364,47 +364,36 @@ const getSortedDeliveryOrders = async (req, res) => {
     const deliveryOrders = await DeliveryOrder.find({ deliveryTrackStatus });
 
     let pendingTotal = 0;
-    let todayTotal = 0;
-    const todayDeliveries = [];
-    const otherDays = {};
-    const today = moment().startOf('day');
+    const deliveriesByDay = {};
 
-    deliveryOrders.forEach((order) => {
+    deliveryOrders.forEach((order,index) => {
       // Increase pending count
       if (order.deliveryTrackStatus === 'pending') {
         pendingTotal += 1;
       }
 
-      // Check if the order is scheduled for today or earlier, or is not scheduled but created today
-      const isScheduledForTodayOrEarlier = order.isSchedule && moment(order.scheduleOptions.date).isSameOrBefore(today, 'day');
-      const isNotScheduledButCreatedToday = !order.isSchedule && moment(order.createdAt).isSame(today, 'day');
+      // Determine the relevant date (schedule date or creation date)
+      const relevantDate = order.isSchedule
+        ? moment(order.scheduleOptions.date).startOf('day').format('YYYY-MM-DD')
+        : moment(order.createdAt).startOf('day').format('YYYY-MM-DD');
+        console.log({relevantDate, index})
 
-      if (isScheduledForTodayOrEarlier || isNotScheduledButCreatedToday) {
-        todayTotal += 1;
-        todayDeliveries.push(order._id);
-      } else if (order.isSchedule) {
-        const orderDate = moment(order.scheduleOptions.date).startOf('day').format('YYYY-MM-DD');
-        if (!otherDays[orderDate]) {
-          otherDays[orderDate] = {
-            date: orderDate,
-            total: 0,
-            deliveryIds: []
-          };
-        }
-        otherDays[orderDate].total += 1;
-        otherDays[orderDate].deliveryIds.push(order._id);
+      // Group orders by the relevant date
+      if (!deliveriesByDay[relevantDate]) {
+        deliveriesByDay[relevantDate] = {
+          date: relevantDate,
+          total: 0,
+          deliveryIds: []
+        };
       }
-    });
 
-    const otherDaysArray = Object.values(otherDays);
+      deliveriesByDay[relevantDate].total += 1;
+      deliveriesByDay[relevantDate].deliveryIds.push(order._id);
+    });
 
     const sortedResponse = {
       pendingTotal,
-      today: {
-        total: todayTotal,
-        deliveryIds: todayDeliveries
-      },
-      otherDays: otherDaysArray
+      deliveriesByDay: Object.values(deliveriesByDay)
     };
 
     return res.status(200).json(sortedResponse);
@@ -413,7 +402,6 @@ const getSortedDeliveryOrders = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
-
 
 module.exports = {
   createDeliveryOrder,
