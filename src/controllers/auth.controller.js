@@ -62,6 +62,7 @@ const signupWithEmailAndPassword = async (req, res) => {
       hash,
       verifyTokenString,
       role,
+      disabled: role == 'rider'
     });
 
     if(role == 'rider'){
