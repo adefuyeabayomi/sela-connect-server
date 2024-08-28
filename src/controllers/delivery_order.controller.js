@@ -290,7 +290,7 @@ const getSortedDeliveryOrders2 = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
-const getSortedDeliveryOrders = async (req, res) => {
+const getSortedDeliveryOrders3 = async (req, res) => {
 
   const { deliveryTrackStatus } = req.query;
   try {
@@ -352,6 +352,69 @@ const getSortedDeliveryOrders = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+const getSortedDeliveryOrders = async (req, res) => {
+  try {
+    const { deliveryTrackStatus } = req.query;
+
+    if (!['pending', 'dropped'].includes(deliveryTrackStatus)) {
+      return res.status(400).json({ error: 'Invalid deliveryTrackStatus value' });
+    }
+
+    // Fetch all matching delivery orders
+    const deliveryOrders = await DeliveryOrder.find({ deliveryTrackStatus });
+
+    let pendingTotal = 0;
+    let todayTotal = 0;
+    const todayDeliveries = [];
+    const otherDays = {};
+    const today = moment().startOf('day');
+
+    deliveryOrders.forEach((order) => {
+      // Increase pending count
+      if (order.deliveryTrackStatus === 'pending') {
+        pendingTotal += 1;
+      }
+
+      // Check if the order is scheduled for today or is not scheduled but created today
+      const isToday =
+        order.isSchedule && moment(order.scheduleOptions.date).isSame(today, 'day') ||
+        !order.isSchedule && moment(order.createdAt).isSame(today, 'day');
+
+      if (isToday) {
+        todayTotal += 1;
+        todayDeliveries.push(order._id);
+      } else if (order.isSchedule) {
+        const orderDate = moment(order.scheduleOptions.date).startOf('day').format('YYYY-MM-DD');
+        if (!otherDays[orderDate]) {
+          otherDays[orderDate] = {
+            date: orderDate,
+            total: 0,
+            deliveryIds: []
+          };
+        }
+        otherDays[orderDate].total += 1;
+        otherDays[orderDate].deliveryIds.push(order._id);
+      }
+    });
+
+    const otherDaysArray = Object.values(otherDays);
+
+    const sortedResponse = {
+      pendingTotal,
+      today: {
+        total: todayTotal,
+        deliveryIds: todayDeliveries
+      },
+      otherDays: otherDaysArray
+    };
+
+    return res.status(200).json(sortedResponse);
+  } catch (error) {
+    console.error('Error sorting deliveries:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 module.exports = {
   createDeliveryOrder,
   updateDeliveryOrderById,

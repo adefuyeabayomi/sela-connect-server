@@ -370,3 +370,12 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-28T11:35:30.924Z*
 Success : connected to database
+## Info
+*2024-08-28T12:16:33.300Z*
+Success: connected to database
+## Info
+*2024-08-28T12:16:33.322Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T12:16:36.131Z*
+Success : connected to database
