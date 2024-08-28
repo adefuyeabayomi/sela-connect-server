@@ -22,4 +22,7 @@ router.get("/is-valid", verifyToken, authController.tokenIsValid);
 router.get("/account-verification-status", authController.accountIsVerified);
 router.get("/resend-verification-mail", authController.accountIsVerified);
 router.post('/reauthenticate',verifyToken, authController.reauthenticate);
+router.get('/get-accounts',authController.getAccounts)
+router.get('/get-accounts/:id',authController.getAccountById)
+
 module.exports = router;

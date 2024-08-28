@@ -284,6 +284,49 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+// Get delivery orders with pagination
+const getAccounts = async (req, res) => {
+  const { page = 1, limit = 30, disabled, deleted, role } = req.query;
+  const skip = (page - 1) * limit;
+  let query = {}
+  if(disabled){
+    query.disabled = disabled
+  }
+  if(deleted){
+    query.deleted = deleted
+  }
+  if(role){
+    query.role = role
+  }
+
+  try {
+    const accounts = await Auth.find(query)
+      .skip(skip)
+      .limit(Number(limit))
+      .exec();
+    return res.status(200).json(accounts);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Get a delivery order by ID
+const getAccountById = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const account = await Auth.findById(id);
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found found' });
+    }
+    return res.status(200).json(account);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
 const updateUserDetails = async (req, res) => {
   const { email, password, recoveryEmail } = req.body;
   const userId = req.user.userId;
@@ -498,5 +541,7 @@ module.exports = {
   tokenIsValid,
   resendVerificationEmail,
   accountIsVerified,
-  reauthenticate
+  reauthenticate,
+  getAccounts,
+  getAccountById
 };
