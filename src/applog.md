@@ -193,3 +193,12 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-28T08:54:27.595Z*
 Success : connected to database
+## Info
+*2024-08-28T08:58:49.192Z*
+Success: connected to database
+## Info
+*2024-08-28T08:58:49.229Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-28T08:58:51.922Z*
+Success : connected to database

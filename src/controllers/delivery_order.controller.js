@@ -182,7 +182,6 @@ const getSortedDeliveryOrders = async (req, res) => {
 
     // Fetch matching delivery orders
     const deliveryOrders = await DeliveryOrder.find(query).lean();
-    console.log({deliveryOrders})
 
     // Calculate the total number of pending deliveries
     const pendingTotal = deliveryOrders.filter(order => order.deliveryTrackStatus === 'pending').length;
