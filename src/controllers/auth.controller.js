@@ -310,6 +310,7 @@ const getAccounts = async (req, res) => {
         delete x.hash
         delete x.verifyTokenString
         delete x.resetTokenString
+        return x;
       })
     return res.status(200).json(accounts);
   } catch (error) {
