@@ -4,6 +4,7 @@ const axios = require('axios')
 const config = require("../utils/config")
 const monnifyUtils = require('../utils/monnify.utils')
 const logger = require('../utils/logger')
+const moment = require('moment')
 
 // Create a new delivery order
 const createDeliveryOrder = async (req, res) => {
@@ -171,7 +172,7 @@ const confirmPayment = async (req, res) => {
   }
 };
 
-const getSortedDeliveryOrders = async (req, res) => {
+const getSortedDeliveryOrders1 = async (req, res) => {
   try {
     const { deliveryTrackStatus } = req.query;
 
@@ -219,6 +220,56 @@ const getSortedDeliveryOrders = async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching sorted delivery orders:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+const getSortedDeliveryOrders = async (req, res) => {
+  const { deliveryTrackStatus } = req.query;
+
+  try {
+    // Fetch pending and dropped delivery orders based on deliveryTrackStatus
+    const orders = await DeliveryOrder.find({
+      deliveryTrackStatus: { $in: ['pending', 'dropped'] }
+    }).exec();
+
+    const today = moment().startOf('day'); // Start of today (00:00:00)
+    const todayEnd = moment().endOf('day'); // End of today (23:59:59)
+
+    let pendingTotal = 0;
+    let todayCount = 0;
+    const otherDaysMap = new Map();
+
+    orders.forEach(order => {
+      if (!order || !order.createdAt) return; // Ensure order and createdAt exist
+
+      const scheduleDate = order.isSchedule && order.scheduleOptions && order.scheduleOptions.date
+        ? moment(order.scheduleOptions.date)
+        : null;
+
+      const isScheduledForToday = scheduleDate && scheduleDate.isBetween(today, todayEnd, null, '[]');
+      const isToday = !order.isSchedule && moment(order.createdAt).isBetween(today, todayEnd, null, '[]');
+
+      if (order.deliveryTrackStatus === 'pending') {
+        pendingTotal += 1;
+      }
+
+      if (isScheduledForToday || isToday) {
+        todayCount += 1;
+      } else if (scheduleDate) {
+        const dateStr = scheduleDate.format('YYYY-MM-DD');
+        otherDaysMap.set(dateStr, (otherDaysMap.get(dateStr) || 0) + 1);
+      }
+    });
+
+    const otherDaysArray = Array.from(otherDaysMap, ([date, total]) => ({ date, total }));
+
+    return res.status(200).json({
+      pendingTotal,
+      today: todayCount,
+      otherDays: otherDaysArray,
+    });
+  } catch (error) {
+    console.error("Error in getSortedDeliveryOrders:", error);
     return res.status(500).json({ message: 'Server error' });
   }
 };
