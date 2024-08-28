@@ -304,6 +304,13 @@ const getAccounts = async (req, res) => {
       .skip(skip)
       .limit(Number(limit))
       .exec();
+      accounts = accounts.map(x=>{
+        delete x.recoveryEmail
+        delete x.otp
+        delete x.hash
+        delete x.verifyTokenString
+        delete x.resetTokenString
+      })
     return res.status(200).json(accounts);
   } catch (error) {
     console.error(error);
@@ -320,6 +327,11 @@ const getAccountById = async (req, res) => {
     if (!account) {
       return res.status(404).json({ message: 'Account not found found' });
     }
+    
+    delete account.otp
+    delete account.hash
+    delete account.verifyTokenString
+    delete account.resetTokenString
     return res.status(200).json(account);
   } catch (error) {
     console.error(error);
