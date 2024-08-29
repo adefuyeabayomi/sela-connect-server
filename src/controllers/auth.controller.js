@@ -341,9 +341,9 @@ const getAccountById = async (req, res) => {
 };
 
 const updateUserDetails = async (req, res) => {
-  const { email, password, recoveryEmail, disabled } = req.body;
+  const { email, password, recoveryEmail, disabled, deleted } = req.body;
   const userId = req.params.id
-
+  console.log('req.body', req.body)
   try {
     // Find the user by ID
     const authUser = await Auth.findById(userId);
@@ -385,8 +385,13 @@ const updateUserDetails = async (req, res) => {
       }
       authUser.recoveryEmail = recoveryEmail;
     }
-
-    authUser.disabled == !!disabled
+    console.log({disabled,deleted})
+    if(disabled !== undefined){
+      authUser.disabled = disabled
+    }
+    if(deleted !== undefined){
+      authUser.deleted = deleted
+    }
 
     // Save the updated user document
     await authUser.save();

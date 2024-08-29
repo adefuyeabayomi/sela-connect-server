@@ -28,3 +28,5 @@
 ::1 - - [28/Aug/2024:12:49:57 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending HTTP/1.1" 200 630 "-" "PostmanRuntime/7.39.1"
 ::1 - - [29/Aug/2024:04:18:02 +0000] "GET / HTTP/1.1" 200 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 ::1 - - [29/Aug/2024:04:18:04 +0000] "GET /favicon.ico HTTP/1.1" 500 1610 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [29/Aug/2024:22:51:01 +0000] "PUT /auth/update/66ce6b75d307268daa985db3 HTTP/1.1" 500 1517 "-" "PostmanRuntime/7.39.1"
+::1 - - [29/Aug/2024:22:51:48 +0000] "PUT /auth/update/66ce6b75d307268daa985db3 HTTP/1.1" 200 47 "-" "PostmanRuntime/7.39.1"

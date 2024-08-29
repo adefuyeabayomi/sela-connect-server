@@ -490,3 +490,188 @@ Server running on http://localhost:8080
 ## Info
 *2024-08-29T04:59:34.826Z*
 Success : connected to database
+## Info
+*2024-08-29T22:18:23.406Z*
+Success: connected to database
+## Info
+*2024-08-29T22:18:23.429Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-29T22:18:53.727Z*
+```javascript
+{
+  "message": "Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/",
+  "reason": {
+    "type": "ReplicaSetNoPrimary",
+    "servers": {},
+    "stale": false,
+    "compatible": true,
+    "heartbeatFrequencyMS": 10000,
+    "localThresholdMS": 15,
+    "setName": "atlas-11dge0-shard-0",
+    "maxElectionId": null,
+    "maxSetVersion": null,
+    "commonWireVersion": 0,
+    "logicalSessionTimeoutMinutes": null
+  }
+}
+```
+## Error
+*2024-08-29T22:18:53.742Z*
+Error in connecting to database
+## Error
+*2024-08-29T22:18:53.751Z*
+```javascript
+{
+  "message": "Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/",
+  "reason": {
+    "type": "ReplicaSetNoPrimary",
+    "servers": {},
+    "stale": false,
+    "compatible": true,
+    "heartbeatFrequencyMS": 10000,
+    "localThresholdMS": 15,
+    "setName": "atlas-11dge0-shard-0",
+    "maxElectionId": null,
+    "maxSetVersion": null,
+    "commonWireVersion": 0,
+    "logicalSessionTimeoutMinutes": null
+  }
+}
+```
+## Info
+*2024-08-29T22:24:13.399Z*
+Success: connected to database
+## Info
+*2024-08-29T22:24:13.452Z*
+Server running on http://localhost:8080
+## Error
+*2024-08-29T22:24:43.643Z*
+```javascript
+{
+  "message": "Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/",
+  "reason": {
+    "type": "ReplicaSetNoPrimary",
+    "servers": {},
+    "stale": false,
+    "compatible": true,
+    "heartbeatFrequencyMS": 10000,
+    "localThresholdMS": 15,
+    "setName": "atlas-11dge0-shard-0",
+    "maxElectionId": null,
+    "maxSetVersion": null,
+    "commonWireVersion": 0,
+    "logicalSessionTimeoutMinutes": null
+  }
+}
+```
+## Error
+*2024-08-29T22:24:43.711Z*
+Error in connecting to database
+## Error
+*2024-08-29T22:24:43.719Z*
+```javascript
+{
+  "message": "Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/",
+  "reason": {
+    "type": "ReplicaSetNoPrimary",
+    "servers": {},
+    "stale": false,
+    "compatible": true,
+    "heartbeatFrequencyMS": 10000,
+    "localThresholdMS": 15,
+    "setName": "atlas-11dge0-shard-0",
+    "maxElectionId": null,
+    "maxSetVersion": null,
+    "commonWireVersion": 0,
+    "logicalSessionTimeoutMinutes": null
+  }
+}
+```
+## Info
+*2024-08-29T22:49:55.735Z*
+Success: connected to database
+## Info
+*2024-08-29T22:49:55.824Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:49:58.526Z*
+Success : connected to database
+## Info
+*2024-08-29T22:51:38.380Z*
+Success: connected to database
+## Info
+*2024-08-29T22:51:38.437Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:51:42.545Z*
+Success: connected to database
+## Info
+*2024-08-29T22:51:42.581Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:51:45.170Z*
+Success : connected to database
+## Info
+*2024-08-29T22:52:25.338Z*
+Success: connected to database
+## Info
+*2024-08-29T22:52:25.379Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:52:27.862Z*
+Success : connected to database
+## Info
+*2024-08-29T22:52:39.197Z*
+Success: connected to database
+## Info
+*2024-08-29T22:52:39.229Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:52:43.210Z*
+Success: connected to database
+## Info
+*2024-08-29T22:52:43.275Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:52:47.192Z*
+Success: connected to database
+## Info
+*2024-08-29T22:52:47.218Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:52:49.795Z*
+Success : connected to database
+## Info
+*2024-08-29T22:52:56.187Z*
+Success: connected to database
+## Info
+*2024-08-29T22:52:56.208Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:52:58.582Z*
+Success : connected to database
+## Info
+*2024-08-29T22:53:12.018Z*
+Success: connected to database
+## Info
+*2024-08-29T22:53:12.041Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:53:21.131Z*
+Success: connected to database
+## Info
+*2024-08-29T22:53:21.187Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:53:23.720Z*
+Success : connected to database
+## Info
+*2024-08-29T22:53:27.037Z*
+Success: connected to database
+## Info
+*2024-08-29T22:53:27.087Z*
+Server running on http://localhost:8080
+## Info
+*2024-08-29T22:53:29.927Z*
+Success : connected to database
