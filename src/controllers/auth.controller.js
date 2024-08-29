@@ -341,7 +341,7 @@ const getAccountById = async (req, res) => {
 };
 
 const updateUserDetails = async (req, res) => {
-  const { email, password, recoveryEmail } = req.body;
+  const { email, password, recoveryEmail, disabled } = req.body;
   const userId = req.params.id
 
   try {
@@ -385,6 +385,8 @@ const updateUserDetails = async (req, res) => {
       }
       authUser.recoveryEmail = recoveryEmail;
     }
+
+    authUser.disabled == !!disabled
 
     // Save the updated user document
     await authUser.save();

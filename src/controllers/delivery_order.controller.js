@@ -376,7 +376,6 @@ const getSortedDeliveryOrders = async (req, res) => {
       const relevantDate = order.isSchedule
         ? moment(order.scheduleOptions.date).startOf('day').format('YYYY-MM-DD')
         : moment(order.createdAt).startOf('day').format('YYYY-MM-DD');
-        console.log({relevantDate, index})
 
       // Group orders by the relevant date
       if (!deliveriesByDay[relevantDate]) {
