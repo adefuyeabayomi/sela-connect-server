@@ -681,3 +681,12 @@ Success: connected to database
 ## Info
 *2024-09-01T20:32:06.924Z*
 Server running on http://localhost:8080
+## Info
+*2024-09-01T20:32:15.244Z*
+Success : connected to database
+## Info
+*2024-09-01T20:38:03.412Z*
+Success: connected to database
+## Info
+*2024-09-01T20:38:03.447Z*
+Server running on http://localhost:8080

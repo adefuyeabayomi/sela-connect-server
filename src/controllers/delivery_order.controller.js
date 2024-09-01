@@ -73,6 +73,7 @@ const getDeliveryOrders = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+
 const getOrdersByIds = async (req, res) => {
   const { ids } = req.body; // Array of IDs passed in the request body
 
@@ -91,6 +92,7 @@ const getOrdersByIds = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+
 // Get a delivery order by ID
 const getDeliveryOrderById = async (req, res) => {
   const { id } = req.params;
@@ -204,8 +206,10 @@ const getSortedDeliveryOrders = async (req, res) => {
     if(deliveryTrackStatus !== undefined){
       query.deliveryTrackStatus = deliveryTrackStatus
     }
+
     if(rider !== undefined){
-      query.assignedRider = rider;
+      let riderData = await Auth.findOne({email: rider})
+      query.assignedRider = riderData._id
     }
     // Fetch all matching delivery orders
     const deliveryOrders = await DeliveryOrder.find(query);
