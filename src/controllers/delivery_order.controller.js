@@ -1,4 +1,5 @@
 const DeliveryOrder = require('../models/delivery_order.model');
+const Auth = requite('../models/auth.model')
 const { zonesData, determineZone } = require('../utils/zoneData');
 const axios = require('axios')
 const config = require("../utils/config")
@@ -47,11 +48,15 @@ const updateDeliveryOrderById = async (req, res) => {
 
 // Get delivery orders with pagination
 const getDeliveryOrders = async (req, res) => {
-  const { page = 1, limit = 30, user, status } = req.query;
+  const { page = 1, limit = 30, user, status, rider } = req.query;
   const skip = (page - 1) * limit;
   let query = {}
   if(user){
     query.email = user
+  }
+  if(rider){
+    let riderData = await Auth.findOne({email: rider})
+    query.assignedRider = riderData._id
   }
   if(status){
     query.deliveryTrackStatus = status
@@ -189,179 +194,21 @@ const confirmPayment = async (req, res) => {
   }
 };
 
-const getSortedDeliveryOrders1 = async (req, res) => {
-  try {
-    const { deliveryTrackStatus } = req.query;
-
-    // Filter by pending and dropped orders only
-    const query = {
-      deliveryTrackStatus: { $in: deliveryTrackStatus }
-    };
-
-    // Fetch matching delivery orders
-    const deliveryOrders = await DeliveryOrder.find(query).lean();
-
-    // Calculate the total number of pending deliveries
-    const pendingTotal = deliveryOrders.filter(order => order.deliveryTrackStatus === 'pending').length;
-
-    // Get today's date in ISO format (ignore time)
-    const today = new Date().toISOString().split('T')[0];
-
-    // Calculate the total number of deliveries scheduled for today
-    const todayDeliveries = deliveryOrders.filter(order =>
-      order.isSchedule && new Date(order.scheduleOptions.date).toISOString().split('T')[0] === today
-    ).length;
-
-    // Calculate the number of deliveries scheduled for other days
-    const otherDays = deliveryOrders
-      .filter(order =>
-        order.isSchedule && new Date(order.scheduleOptions.date).toISOString().split('T')[0] !== today
-      )
-      .reduce((acc, order) => {
-        const scheduledDate = new Date(order.scheduleOptions.date).toISOString().split('T')[0];
-        const existingEntry = acc.find(entry => entry.date === scheduledDate);
-
-        if (existingEntry) {
-          existingEntry.total += 1;
-        } else {
-          acc.push({ date: scheduledDate, total: 1 });
-        }
-
-        return acc;
-      }, []);
-
-    return res.status(200).json({
-      pendingTotal,
-      today: todayDeliveries,
-      otherDays
-    });
-  } catch (error) {
-    console.error('Error fetching sorted delivery orders:', error);
-    return res.status(500).json({ message: 'Server error' });
-  }
-};
-const getSortedDeliveryOrders2 = async (req, res) => {
-  const { deliveryTrackStatus } = req.query;
-
-  try {
-    // Fetch pending and dropped delivery orders based on deliveryTrackStatus
-    const orders = await DeliveryOrder.find({
-      deliveryTrackStatus: { $in: ['pending', 'dropped'] }
-    }).exec();
-
-    const today = moment().startOf('day'); // Start of today (00:00:00)
-    const todayEnd = moment().endOf('day'); // End of today (23:59:59)
-
-    let pendingTotal = 0;
-    let todayCount = 0;
-    const otherDaysMap = new Map();
-
-    orders.forEach(order => {
-      if (!order || !order.createdAt) return; // Ensure order and createdAt exist
-
-      const scheduleDate = order.isSchedule && order.scheduleOptions && order.scheduleOptions.date
-        ? moment(order.scheduleOptions.date)
-        : null;
-
-      const isScheduledForToday = scheduleDate && scheduleDate.isBetween(today, todayEnd, null, '[]');
-      const isToday = !order.isSchedule && moment(order.createdAt).isBetween(today, todayEnd, null, '[]');
-
-      if (order.deliveryTrackStatus === 'pending') {
-        pendingTotal += 1;
-      }
-
-      if (isScheduledForToday || isToday) {
-        todayCount += 1;
-      } else if (scheduleDate) {
-        const dateStr = scheduleDate.format('YYYY-MM-DD');
-        otherDaysMap.set(dateStr, (otherDaysMap.get(dateStr) || 0) + 1);
-      }
-    });
-
-    const otherDaysArray = Array.from(otherDaysMap, ([date, total]) => ({ date, total }));
-
-    return res.status(200).json({
-      pendingTotal,
-      today: todayCount,
-      otherDays: otherDaysArray,
-    });
-  } catch (error) {
-    console.error("Error in getSortedDeliveryOrders:", error);
-    return res.status(500).json({ message: 'Server error' });
-  }
-};
-const getSortedDeliveryOrders3 = async (req, res) => {
-
-  const { deliveryTrackStatus } = req.query;
-  try {
-    // Fetch pending and dropped delivery orders
-    const orders = await DeliveryOrder.find({
-      deliveryTrackStatus: { $in: deliveryTrackStatus }
-    }).exec();
-
-    const today = moment().startOf('day'); // Start of today (00:00:00)
-    const todayEnd = moment().endOf('day'); // End of today (23:59:59)
-
-    let pendingTotal = 0;
-    let todayCount = 0;
-    const todayDeliveries = [];
-    const otherDaysMap = new Map();
-
-    orders.forEach(order => {
-      if (!order || !order.createdAt) return; // Ensure order and createdAt exist
-
-      const scheduleDate = order.isSchedule && order.scheduleOptions && order.scheduleOptions.date
-        ? moment(order.scheduleOptions.date)
-        : null;
-
-      const isScheduledForToday = scheduleDate && scheduleDate.isBetween(today, todayEnd, null, '[]');
-      const isToday = !order.isSchedule && moment(order.createdAt).isBetween(today, todayEnd, null, '[]');
-
-      if (order.deliveryTrackStatus === 'pending') {
-        pendingTotal += 1;
-      }
-
-      if (isScheduledForToday || isToday) {
-        todayCount += 1;
-        todayDeliveries.push(order._id); // Add order ID to todayDeliveries
-      } else if (scheduleDate) {
-        const dateStr = scheduleDate.format('YYYY-MM-DD');
-        if (!otherDaysMap.has(dateStr)) {
-          otherDaysMap.set(dateStr, { total: 0, ids: [] });
-        }
-        const dayData = otherDaysMap.get(dateStr);
-        dayData.total += 1;
-        dayData.ids.push(order._id);
-      }
-    });
-
-    const otherDaysArray = Array.from(otherDaysMap, ([date, data]) => ({
-      date,
-      total: data.total,
-      ids: data.ids,
-    }));
-
-    return res.status(200).json({
-      pendingTotal,
-      today: todayCount,
-      todayDeliveries, // Array of IDs for today's deliveries
-      otherDays: otherDaysArray,
-    });
-  } catch (error) {
-    console.error("Error in getSortedDeliveryOrders:", error);
-    return res.status(500).json({ message: 'Server error' });
-  }
-};
 const getSortedDeliveryOrders = async (req, res) => {
   try {
-    const { deliveryTrackStatus } = req.query;
-
+    const { deliveryTrackStatus, rider } = req.query;
+    let query = {}
     if (!['pending', 'dropped'].includes(deliveryTrackStatus)) {
       return res.status(400).json({ error: 'Invalid deliveryTrackStatus value' });
     }
-
+    if(deliveryTrackStatus !== undefined){
+      query.deliveryTrackStatus = deliveryTrackStatus
+    }
+    if(rider !== undefined){
+      query.assignedRider = rider;
+    }
     // Fetch all matching delivery orders
-    const deliveryOrders = await DeliveryOrder.find({ deliveryTrackStatus });
+    const deliveryOrders = await DeliveryOrder.find(query);
 
     let pendingTotal = 0;
     const deliveriesByDay = {};
