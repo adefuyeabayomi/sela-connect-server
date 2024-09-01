@@ -1,5 +1,5 @@
 const DeliveryOrder = require('../models/delivery_order.model');
-const Auth = requite('../models/auth.model')
+const Auth = require('../models/auth.model')
 const { zonesData, determineZone } = require('../utils/zoneData');
 const axios = require('axios')
 const config = require("../utils/config")
