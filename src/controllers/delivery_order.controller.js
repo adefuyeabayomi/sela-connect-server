@@ -195,7 +195,6 @@ const confirmPayment = async (req, res) => {
     return res.status(500).json({ message: 'Server error', error });
   }
 };
-
 const getSortedDeliveryOrders = async (req, res) => {
   try {
     const { deliveryTrackStatus, rider } = req.query;
@@ -209,8 +208,9 @@ const getSortedDeliveryOrders = async (req, res) => {
 
     if(rider !== undefined){
       let riderData = await Auth.findOne({email: rider})
-      query.assignedRider = riderData._id
+      query.assignedRider = riderData._id.toString()
     }
+    console.log(query)
     // Fetch all matching delivery orders
     const deliveryOrders = await DeliveryOrder.find(query);
 

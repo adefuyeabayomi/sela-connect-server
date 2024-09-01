@@ -10,12 +10,13 @@ const {
   getSortedDeliveryOrders,
   getOrdersByIds
 } = require('../controllers/delivery_order.controller');
-const verifyToken = require('../functions/verifyToken.middleware'); // Assuming this middleware is used for authentication
+const verifyToken = require('../functions/verifyToken.middleware'); 
 
 // Route to create a delivery order
 router.post('/', verifyToken, createDeliveryOrder);
 
 router.get('/sorted', getSortedDeliveryOrders);
+
 // Route to update a delivery order by ID
 router.put('/:id', verifyToken, updateDeliveryOrderById);
 
@@ -33,7 +34,6 @@ router.post('/confirm-payment',confirmPayment);
 
 // Define the new endpoint for fetching delivery orders by IDs
 router.post('/orders-by-ids', getOrdersByIds);
-
 
 module.exports = router;
 
