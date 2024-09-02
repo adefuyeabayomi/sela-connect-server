@@ -44,3 +44,8 @@
 ::1 - - [01/Sep/2024:21:14:14 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending&rider=rider1@gmail.com HTTP/1.1" 200 188 "-" "PostmanRuntime/7.39.1"
 ::1 - - [01/Sep/2024:21:15:17 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending&rider=rider1@gmail.com HTTP/1.1" 200 188 "-" "PostmanRuntime/7.39.1"
 ::1 - - [01/Sep/2024:21:16:11 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending&rider=rider1@gmail.com HTTP/1.1" 200 188 "-" "PostmanRuntime/7.39.1"
+::1 - - [02/Sep/2024:08:29:10 +0000] "GET /delivery-orders/sorted HTTP/1.1" 200 630 "-" "PostmanRuntime/7.39.1"
+::1 - - [02/Sep/2024:08:29:50 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=intransit HTTP/1.1" 200 39 "-" "PostmanRuntime/7.39.1"
+::1 - - [02/Sep/2024:08:30:31 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=intransit HTTP/1.1" 200 113 "-" "PostmanRuntime/7.39.1"
+::1 - - [02/Sep/2024:08:32:10 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=pending&rider=rider1@gmail.com HTTP/1.1" 200 39 "-" "PostmanRuntime/7.39.1"
+::1 - - [02/Sep/2024:08:45:36 +0000] "GET /delivery-orders/sorted?deliveryTrackStatus=dropped&rider=rider1@gmail.com HTTP/1.1" 200 113 "-" "PostmanRuntime/7.39.1"

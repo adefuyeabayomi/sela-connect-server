@@ -10,6 +10,7 @@ const {
   getSortedDeliveryOrders,
   getOrdersByIds
 } = require('../controllers/delivery_order.controller');
+
 const verifyToken = require('../functions/verifyToken.middleware'); 
 
 // Route to create a delivery order

@@ -813,3 +813,12 @@ Server running on http://localhost:8080
 ## Info
 *2024-09-02T07:54:21.055Z*
 Success : connected to database
+## Info
+*2024-09-02T08:23:58.340Z*
+Success: connected to database
+## Info
+*2024-09-02T08:23:58.373Z*
+Server running on http://localhost:8080
+## Info
+*2024-09-02T08:24:08.360Z*
+Success : connected to database
