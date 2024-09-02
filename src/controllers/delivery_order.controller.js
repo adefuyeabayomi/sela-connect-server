@@ -33,7 +33,7 @@ const updateDeliveryOrderById = async (req, res) => {
 
     // Update fields from the request body
     Object.keys(req.body).forEach((key) => {
-      if (!!req.body[key]) {
+      if (!!req.body[key] && key!=='paymentStatus') {
         deliveryOrder[key] = req.body[key];
       }
     });
@@ -195,29 +195,41 @@ const confirmPayment = async (req, res) => {
     return res.status(500).json({ message: 'Server error', error });
   }
 };
+
 const getSortedDeliveryOrders = async (req, res) => {
   try {
     const { deliveryTrackStatus, rider } = req.query;
-    let query = {}
-    if (!['pending', 'dropped'].includes(deliveryTrackStatus)) {
+    let query = {};
+
+    // Validate deliveryTrackStatus and prepare query
+    if (deliveryTrackStatus && !['pending', 'dropped', 'intransit'].includes(deliveryTrackStatus)) {
       return res.status(400).json({ error: 'Invalid deliveryTrackStatus value' });
     }
-    if(deliveryTrackStatus !== undefined){
-      query.deliveryTrackStatus = deliveryTrackStatus
+    
+    if (deliveryTrackStatus === 'intransit') {
+      // 'intransit' could represent multiple statuses
+      query.deliveryTrackStatus = { $in: ['started', 'picked'] };
+    } else if (deliveryTrackStatus) {
+      query.deliveryTrackStatus = deliveryTrackStatus;
     }
 
-    if(rider !== undefined){
-      let riderData = await Auth.findOne({email: rider})
-      query.assignedRider = riderData._id.toString()
+    if (rider) {
+      const riderData = await Auth.findOne({ email: rider });
+      if (!riderData) {
+        return res.status(404).json({ error: 'Rider not found' });
+      }
+      query.assignedRider = riderData._id.toString();
     }
-    console.log(query)
+
+    console.log(query);
+
     // Fetch all matching delivery orders
     const deliveryOrders = await DeliveryOrder.find(query);
 
     let pendingTotal = 0;
     const deliveriesByDay = {};
 
-    deliveryOrders.forEach((order,index) => {
+    deliveryOrders.forEach((order) => {
       // Increase pending count
       if (order.deliveryTrackStatus === 'pending') {
         pendingTotal += 1;
